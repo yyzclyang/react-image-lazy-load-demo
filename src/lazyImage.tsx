@@ -23,8 +23,10 @@ const LazyImage: React.FC<LazyImageProps> = (props: LazyImageProps) => {
       },
       { threshold: [0.01] }
     );
-
     intersectionObserver.observe(imgEl.current as Element);
+    return () => {
+      intersectionObserver.unobserve(imgEl.current as Element);
+    };
   }, []);
 
   return (
